@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Tattoo Audio App - Dövme Ses Entegrasyonu</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎵 Skin Tattoo Audio App 🎨</h1>
+            <p>Dövme üzerinde ses entegrasyonu ve AR deneyimi</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Adım 1: Ses Yükleme -->
+            <section class="step-section" id="step1">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h2>Ses Dosyası Yükle</h2>
+                </div>
+                <div class="step-content">
+                    <div class="upload-area" id="audioUploadArea">
+                        <div class="upload-icon">🎵</div>
+                        <p>Ses dosyanızı buraya sürükleyin veya tıklayın</p>
+                        <input type="file" id="audioFile" accept="audio/*" style="display: none;">
+                        <button class="upload-btn" onclick="document.getElementById('audioFile').click()">
+                            Ses Dosyası Seç
+                        </button>
+                    </div>
+                    <div class="file-info" id="audioFileInfo" style="display: none;">
+                        <p><strong>Seçilen dosya:</strong> <span id="audioFileName"></span></p>
+                        <button class="upload-submit-btn" onclick="uploadAudio()">Sesi Yükle ve Görselleştir</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Adım 2: Kalp Ritmi Görselleştirmesi -->
+            <section class="step-section" id="step2" style="display: none;">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h2>Kalp Ritmi Ses Dalgası</h2>
+                </div>
+                <div class="step-content">
+                    <div class="visualization-container">
+                        <div id="heartbeatVisualization" style="display: none;"></div>
+                        <div class="loading" id="visualizationLoading">
+                            <div class="spinner"></div>
+                            <p>Kalp ritmi görselleştirmesi oluşturuluyor...</p>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="download-btn" id="downloadBtn" style="display: none;" onclick="downloadVisualization()">
+                            📥 Görseli İndir
+                        </button>
+                        <p class="step-description">
+                            Bu görseli müşteriye gönderin. Müşteri dövme olarak çizdikten sonra 
+                            fotoğrafını yükleyecek.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Adım 3: Dövme Fotoğrafı Yükleme -->
+            <section class="step-section" id="step3" style="display: none;">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <h2>Dövme Fotoğrafı Yükle</h2>
+                </div>
+                <div class="step-content">
+                    <div class="upload-area" id="tattooUploadArea">
+                        <div class="upload-icon">📸</div>
+                        <p>Çizilen dövmenin fotoğrafını buraya yükleyin</p>
+                        <input type="file" id="tattooFile" accept="image/*" style="display: none;">
+                        <button class="upload-btn" onclick="document.getElementById('tattooFile').click()">
+                            Dövme Fotoğrafı Seç
+                        </button>
+                    </div>
+                    <div class="file-info" id="tattooFileInfo" style="display: none;">
+                        <p><strong>Seçilen dosya:</strong> <span id="tattooFileName"></span></p>
+                        <button class="upload-submit-btn" onclick="uploadTattoo()">Dövme Fotoğrafını Yükle</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Adım 4: Entegrasyon -->
+            <section class="step-section" id="step4" style="display: none;">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <h2>Ses ve Dövme Entegrasyonu</h2>
+                </div>
+                <div class="step-content">
+                    <div class="integration-status">
+                        <div class="status-item">
+                            <span class="status-icon">🎵</span>
+                            <span>Ses dosyası: <strong id="integratedAudioFile"></strong></span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-icon">🎨</span>
+                            <span>Dövme dosyası: <strong id="integratedTattooFile"></strong></span>
+                        </div>
+                    </div>
+                    <button class="integrate-btn" onclick="integrateAudioWithTattoo()">
+                        🔗 Ses ve Dövme Entegrasyonunu Başlat
+                    </button>
+                </div>
+            </section>
+
+            <!-- Adım 5: AR Deneyimi -->
+            <section class="step-section" id="step5" style="display: none;">
+                <div class="step-header">
+                    <div class="step-number">5</div>
+                    <h2>AR Deneyimi</h2>
+                </div>
+                <div class="step-content">
+                    <div class="ar-instructions">
+                        <h3>📱 Telefonunuzu Dövme Üzerine Tutun</h3>
+                        <p>Kamera dövme üzerine odaklandığında:</p>
+                        <ul>
+                            <li>✨ Işık efekti başlayacak</li>
+                            <li>🎵 Ses çalmaya başlayacak</li>
+                            <li>💫 Işık, sesle birlikte dövme çizgileri üzerinden ilerleyecek</li>
+                        </ul>
+                    </div>
+                    <div class="ar-controls">
+                        <button class="ar-btn" onclick="startARExperience()">
+                            🚀 AR Deneyimini Başlat
+                        </button>
+                        <button class="ar-btn" onclick="stopARExperience()">
+                            ⏹️ AR Deneyimini Durdur
+                        </button>
+                    </div>
+                    <div class="ar-status" id="arStatus">
+                        <p>AR deneyimi hazır...</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text">Adım <span id="currentStep">1</span> / 5</div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notificationMessage"></span>
+        <button class="notification-close" onclick="closeNotification()">×</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
