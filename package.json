@@ -1,0 +1,27 @@
+{
+  "name": "skin-tattoo-audio-app",
+  "version": "1.0.0",
+  "description": "Dövme üzerinde ses entegrasyonu ve AR deneyimi",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "jimp": "^0.22.12",
+    "multer": "^1.4.5-lts.1",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "tattoo",
+    "audio",
+    "AR",
+    "visualization"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"window.density.editorTabHeight": "compact",
+		"terminal.integrated.commandsToSkipShell": [
+			""
+		],
+		"workbench.editor.enablePreview": true
+	}
+}

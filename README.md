@@ -1,42 +1,264 @@
-            - name: Setup Java JDK
-  uses: actions/setup-java@v3.14.1
-  with:
-    # The Java version to set up. Takes a whole or semver Java version. See examples of supported syntax in README file
-    java-version: # optional
-    # The path to the `.java-version` file. See examples of supported syntax in README file
-    java-version-file: # optional
-    # Java distribution. See the list of supported distributions in README file
-    distribution: 
-    # The package type (jdk, jre, jdk+fx, jre+fx)
-    java-package: # optional, default is jdk
-    # The architecture of the package (defaults to the action runner's architecture)
-    architecture: # optional
-    # Path to where the compressed JDK is located
-    jdkFile: # optional
-    # Set this option if you want the action to check for the latest available version that satisfies the version spec
-    check-latest: # optional
-    # ID of the distributionManagement repository in the pom.xml file. Default is `github`
-    server-id: # optional, default is github
-    # Environment variable name for the username for authentication to the Apache Maven repository. Default is $GITHUB_ACTOR
-    server-username: # optional, default is GITHUB_ACTOR
-    # Environment variable name for password or token for authentication to the Apache Maven repository. Default is $GITHUB_TOKEN
-    server-password: # optional, default is GITHUB_TOKEN
-    # Path to where the settings.xml file will be written. Default is ~/.m2.
-    settings-path: # optional
-    # Overwrite the settings.xml file if it exists. Default is "true".
-    overwrite-settings: # optional, default is true
-    # GPG private key to import. Default is empty string.
-    gpg-private-key: # optional
-    # Environment variable name for the GPG private key passphrase. Default is $GPG_PASSPHRASE.
-    gpg-passphrase: # optional
-    # Name of the build platform to cache dependencies. It can be "maven", "gradle" or "sbt".
-    cache: # optional
-    # Workaround to pass job status to post job step. This variable is not intended for manual setting
-    job-status: # optional, default is ${{ job.status }}
-    # The token used to authenticate when fetching version manifests hosted on github.com, such as for the Microsoft Build of OpenJDK. When running this action on github.com, the default value is sufficient. When running on GHES, you can pass a personal access token for github.com if you are experiencing rate limiting.
-    token: # optional, default is ${{ github.server_url == 'https://github.com' && github.token || '' }}
-    # Name of Maven Toolchain ID if the default name of "${distribution}_${java-version}" is not wanted. See examples of supported syntax in Advanced Usage file
-    mvn-toolchain-id: # optional
-    # Name of Maven Toolchain Vendor if the default name of "${distribution}" is not wanted. See examples of supported syntax in Advanced Usage file
-    mvn-toolchain-vendor: # optional
-          
+# 🎵 Skin Tattoo Audio App 🎨
+
+Dövme üzerinde ses entegrasyonu ve AR (Artırılmış Gerçeklik) deneyimi sunan modern web uygulaması.
+
+## 🌟 Özellikler
+
+### 1. Ses Analizi ve Görselleştirme
+- **Kalp Ritmi Görselleştirmesi**: Ses dosyasından kalp ritmi şeklinde ses dalgası oluşturur
+- **Profesyonel Görsel**: 800x400 piksel yüksek kaliteli PNG formatında
+- **Çoklu Ses Formatı**: MP3, WAV, OGG, AAC destekler
+
+### 2. Dövme Entegrasyonu
+- **Fotoğraf Yükleme**: Çizilen dövme fotoğrafını yükleyin
+- **Otomatik Entegrasyon**: Ses ve dövme dosyalarını otomatik entegre eder
+- **Güvenli Depolama**: Tüm dosyalar güvenli şekilde saklanır
+
+### 3. AR (Artırılmış Gerçeklik) Deneyimi
+- **Kamera Entegrasyonu**: Telefon kamerası ile dövme üzerine odaklanın
+- **Işık Efekti**: Dövme çizgileri üzerinde hareket eden ışık efekti
+- **Ses Senkronizasyonu**: Işık efekti sesle birlikte hareket eder
+- **Gerçek Zamanlı**: Socket.IO ile anlık iletişim
+
+## 🚀 Kurulum
+
+### Gereksinimler
+- Node.js (v14 veya üzeri)
+- npm veya yarn
+
+### Adım 1: Projeyi İndirin
+```bash
+git clone <repository-url>
+cd skin-tattoo-audio-app
+```
+
+### Adım 2: Bağımlılıkları Yükleyin
+```bash
+npm install
+```
+
+### Adım 3: Uygulamayı Başlatın
+```bash
+# Geliştirme modu
+npm run dev
+
+# Üretim modu
+npm start
+```
+
+### Adım 4: Tarayıcıda Açın
+```
+http://localhost:3000
+```
+
+## 📱 Kullanım
+
+### Adım 1: Ses Dosyası Yükleme
+1. "Ses Dosyası Seç" butonuna tıklayın
+2. MP3, WAV, OGG veya AAC formatında ses dosyası seçin
+3. "Sesi Yükle ve Görselleştir" butonuna tıklayın
+4. Kalp ritmi görselleştirmesi otomatik oluşturulacak
+
+### Adım 2: Görseli İndirin
+1. Oluşturulan kalp ritmi görselini indirin
+2. Bu görseli müşteriye gönderin
+3. Müşteri dövme olarak çizdikten sonra fotoğrafını çeksin
+
+### Adım 3: Dövme Fotoğrafı Yükleme
+1. Çizilen dövmenin fotoğrafını yükleyin
+2. "Dövme Fotoğrafını Yükle" butonuna tıklayın
+
+### Adım 4: Entegrasyon
+1. "Ses ve Dövme Entegrasyonunu Başlat" butonuna tıklayın
+2. Sistem otomatik olarak ses ve dövme dosyalarını entegre eder
+
+### Adım 5: AR Deneyimi
+1. "AR Deneyimini Başlat" butonuna tıklayın
+2. Telefonunuzu dövme üzerine tutun
+3. Kamera dövme üzerine odaklandığında:
+   - ✨ Işık efekti başlar
+   - 🎵 Ses çalmaya başlar
+   - 💫 Işık, sesle birlikte dövme çizgileri üzerinden ilerler
+
+## 🛠️ Teknik Detaylar
+
+### Backend Teknolojileri
+- **Express.js**: Web sunucusu
+- **Socket.IO**: Gerçek zamanlı iletişim
+- **Multer**: Dosya yükleme işlemleri
+- **Canvas**: Görsel oluşturma
+- **Jimp**: Resim işleme
+
+### Frontend Teknolojileri
+- **Vanilla JavaScript**: Modern ES6+ syntax
+- **CSS3**: Gradient, animasyonlar, responsive tasarım
+- **HTML5**: Semantic markup, drag & drop
+
+### Dosya Yapısı
+```
+skin-tattoo-audio-app/
+├── server.js              # Ana sunucu dosyası
+├── package.json           # Proje bağımlılıkları
+├── public/                # Frontend dosyaları
+│   ├── index.html        # Ana HTML sayfası
+│   ├── style.css         # CSS stilleri
+│   └── script.js         # JavaScript işlevleri
+├── uploads/               # Yüklenen dosyalar (otomatik oluşur)
+└── README.md              # Bu dosya
+```
+
+## 🔧 API Endpoints
+
+### POST /upload-audio
+Ses dosyası yükleme ve kalp ritmi görselleştirme
+```json
+{
+  "success": true,
+  "audioFile": "audio-123456789.mp3",
+  "visualization": "visualization-audio-123456789.png",
+  "message": "Ses dosyası başarıyla yüklendi ve görselleştirildi!"
+}
+```
+
+### POST /upload-tattoo
+Dövme fotoğrafı yükleme
+```json
+{
+  "success": true,
+  "tattooFile": "tattoo-123456789.jpg",
+  "message": "Dövme fotoğrafı başarıyla yüklendi!"
+}
+```
+
+### POST /integrate
+Ses ve dövme entegrasyonu
+```json
+{
+  "success": true,
+  "integrationData": {
+    "audioPath": "uploads/audio-123456789.mp3",
+    "tattooPath": "uploads/tattoo-123456789.jpg",
+    "audioSize": 1024000,
+    "timestamp": "2024-01-01T12:00:00.000Z",
+    "integrationId": "1704110400000"
+  },
+  "message": "Ses ve dövme başarıyla entegre edildi!"
+}
+```
+
+## 🎨 Görselleştirme Algoritması
+
+### Kalp Ritmi Dalga Formu
+```javascript
+// Kalp ritmi simülasyonu
+for (let x = 0; x < 800; x += 2) {
+    const time = x / 800 * 4 * Math.PI; // 4 kalp atışı
+    const heartbeat = Math.sin(time) * 0.5 + 
+                     Math.sin(3 * time) * 0.3 + 
+                     Math.sin(5 * time) * 0.1;
+    
+    const y = 200 + heartbeat * 150;
+    // Çizim işlemleri...
+}
+```
+
+### Özellikler
+- **4 Kalp Atışı**: 800 piksel genişliğinde 4 tam kalp atışı
+- **Harmonik Bileşenler**: Temel frekans + 3. ve 5. harmonikler
+- **Görsel Kalite**: 3 piksel kalınlığında, #ff0066 renk kodu
+- **Kalp Simgesi**: Görselin üst kısmında kalp emoji
+
+## 🔒 Güvenlik
+
+### Dosya Doğrulama
+- **Ses Dosyaları**: Sadece audio/* MIME type kabul edilir
+- **Resim Dosyaları**: Sadece image/* MIME type kabul edilir
+- **Dosya Boyutu**: Sunucu tarafında kontrol edilir
+
+### Güvenli Depolama
+- **Benzersiz İsimlendirme**: Timestamp + random number
+- **Upload Klasörü**: Sadece gerekli dosyalar erişilebilir
+- **MIME Type Kontrolü**: Dosya içeriği doğrulanır
+
+## 📱 Mobil Uyumluluk
+
+### Responsive Tasarım
+- **Mobile First**: Mobil cihazlar için optimize edilmiş
+- **Touch Friendly**: Dokunmatik ekranlar için büyük butonlar
+- **Responsive Grid**: Tüm ekran boyutlarında uyumlu
+
+### AR Deneyimi
+- **Kamera Erişimi**: Mobil cihazlarda kamera API'si
+- **Touch Controls**: Dokunmatik AR kontrolleri
+- **Performance**: Mobil cihazlarda optimize edilmiş performans
+
+## 🚨 Hata Yönetimi
+
+### Kullanıcı Dostu Hata Mesajları
+- **Dosya Formatı**: Yanlış dosya formatı seçildiğinde
+- **Yükleme Hataları**: Sunucu hatalarında
+- **Entegrasyon Hataları**: Dosya bulunamadığında
+
+### Logging ve Monitoring
+- **Console Logs**: Geliştirici için detaylı loglar
+- **Error Tracking**: Hata durumlarının takibi
+- **Performance Monitoring**: Yükleme sürelerinin ölçümü
+
+## 🔮 Gelecek Özellikler
+
+### Planlanan Geliştirmeler
+- **Gerçek Ses Analizi**: FFT tabanlı gerçek ses analizi
+- **3D Görselleştirme**: Üç boyutlu ses dalgası
+- **AI Destekli**: Yapay zeka ile ses analizi
+- **Cloud Storage**: Bulut tabanlı dosya depolama
+- **Mobile App**: Native mobil uygulama
+
+### Teknik İyileştirmeler
+- **WebRTC**: Gerçek zamanlı kamera erişimi
+- **WebGL**: Gelişmiş grafik işleme
+- **Service Workers**: Offline çalışma desteği
+- **PWA**: Progressive Web App özellikleri
+
+## 🤝 Katkıda Bulunma
+
+### Geliştirme Süreci
+1. Fork yapın
+2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
+3. Commit yapın (`git commit -m 'Add amazing feature'`)
+4. Push yapın (`git push origin feature/amazing-feature`)
+5. Pull Request oluşturun
+
+### Kod Standartları
+- **ESLint**: JavaScript kod kalitesi
+- **Prettier**: Kod formatı
+- **JSDoc**: Fonksiyon dokümantasyonu
+- **Testing**: Unit testler
+
+## 📄 Lisans
+
+Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için `LICENSE` dosyasına bakın.
+
+## 📞 İletişim
+
+### Destek ve Sorular
+- **GitHub Issues**: Teknik sorunlar için
+- **Email**: [your-email@example.com]
+- **Discord**: [Discord Server Link]
+
+### Sosyal Medya
+- **Twitter**: [@yourusername]
+- **LinkedIn**: [Your Name]
+- **Portfolio**: [your-website.com]
+
+## 🙏 Teşekkürler
+
+Bu projeyi mümkün kılan tüm açık kaynak topluluğuna teşekkürler:
+
+- **Express.js** ekibi
+- **Socket.IO** geliştiricileri
+- **Canvas API** standartları
+- **Web Audio API** ekibi
+
+---
+
+**Not**: Bu uygulama eğitim ve demo amaçlıdır. Üretim ortamında kullanmadan önce güvenlik testlerinden geçirin.
